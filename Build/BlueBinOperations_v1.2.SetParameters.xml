@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/BlueBinOperations_DemoV12" />
+  <setParameter name="DefaultConnection-Web.config Connection String" value="Data Source=etl.bluebin.com;Initial Catalog=DemoV12;User ID=DemoV12_AppUser;Password=BBT2015!" />
+  <setParameter name="BlueBinHardwareConnectionString-Web.config Connection String" value="Data Source=sqldev.bluebin.com;Initial Catalog=BlueBinHardware;User ID=gbutler;Password=Rommel1!" />
+  <setParameter name="Site_ConnectionString-Web.config Connection String" value="Data Source=etl.bluebin.com;Initial Catalog=DemoV12;User ID=DemoV12_AppUser;Password=BBT2015!" />
+</parameters>
