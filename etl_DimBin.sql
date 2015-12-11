@@ -80,18 +80,9 @@ SELECT Row_number()
            ITEMLOC.ITEM                                                                               AS ItemID,
            ITEMLOC.LOCATION                                                                           AS LocationID,
            PREFER_BIN                                                                                 AS BinSequence,
-           CASE
-             WHEN PREFER_BIN LIKE 'CARD%' THEN 'WALL'
-             ELSE LEFT(PREFER_BIN, 1)
-           END                                                                                        AS BinCart,
-           CASE
-             WHEN PREFER_BIN LIKE 'CARD%' THEN 'WALL'
-             ELSE Substring(PREFER_BIN, 2, 1)
-           END                                                                                        AS BinRow,
-           CASE
-             WHEN PREFER_BIN LIKE 'CARD%' THEN Cast('0' + RIGHT(PREFER_BIN, 2) AS VARCHAR)
-             ELSE Substring(PREFER_BIN, 3, 2)
-           END                                                                                        AS BinPosition,
+		   	CASE WHEN PREFER_BIN LIKE '[A-Z][A-Z]%' THEN LEFT(PREFER_BIN, 2) ELSE LEFT(PREFER_BIN, 1) END as BinCart,
+			CASE WHEN PREFER_BIN LIKE '[A-Z][A-Z]%' THEN SUBSTRING(PREFER_BIN, 3, 1) ELSE SUBSTRING(PREFER_BIN, 2,1) END as BinRow,
+			CASE WHEN PREFER_BIN LIKE '[A-Z][A-Z]%' THEN SUBSTRING (PREFER_BIN,4,2) ELSE SUBSTRING(PREFER_BIN, 3,2) END as BinPosition,
            CASE
              WHEN PREFER_BIN LIKE 'CARD%' THEN 'WALL'
              ELSE RIGHT(PREFER_BIN, 3)

@@ -191,3 +191,7 @@ GO
 UPDATE etl.JobSteps
 SET LastModifiedDate = GETDATE()
 WHERE StepName = 'Sourcing'
+
+GO
+grant exec on tb_Sourcing to public
+GO

@@ -85,3 +85,7 @@ GO
 UPDATE etl.JobSteps
 SET LastModifiedDate = GETDATE()
 WHERE StepName = 'Kanban'
+
+GO
+grant exec on tb_Kanban to public
+GO

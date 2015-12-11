@@ -44,3 +44,8 @@ GO
 UPDATE etl.JobSteps
 SET LastModifiedDate = GETDATE()
 WHERE StepName = 'Contracts'
+
+GO
+
+grant exec on tb_Contracts to public
+GO

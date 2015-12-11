@@ -27,7 +27,10 @@ AS
     INTO   #MonthEndIssues
     FROM   ICTRANS
 
-    SELECT DISTINCT Eomonth(Date) AS MonthEnd
+
+    SELECT DISTINCT 
+		DATEADD(DAY, 1, EOMONTH(DATEADD(MONTH, -1, Date))) as MonthStart,
+		Eomonth(Date) AS MonthEnd
     INTO   #MonthEndDates
     FROM   bluebin.DimDate
 
@@ -45,7 +48,7 @@ AS
     INTO   bluebin.FactWarehouseSnapshot
     FROM   #MonthEndDates a
            LEFT JOIN #MonthEndIssues b
-                  ON a.MonthEnd >= b.TRANS_DATE
+                  ON a.MonthEnd >= b.TRANS_DATE AND a.MonthStart <= b.TRANS_DATE
            INNER JOIN bluebin.DimLocation c
                    ON b.LOCATION = c.LocationID
            INNER JOIN bluebin.DimItem d
